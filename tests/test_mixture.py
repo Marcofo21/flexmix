@@ -222,3 +222,16 @@ class TestGaussianMixture:
         # covariances: 2 * 3 * 4 / 2 = 12
         # Total: 1 + 6 + 12 = 19
         assert gmm._n_parameters() == 19
+
+    def test_more_components_than_samples(self):
+        """Test fitting when n_components > n_samples."""
+        np.random.seed(42)
+        X = np.random.randn(5, 2)
+
+        # This should work with replacement
+        gmm = GaussianMixture(n_components=10, random_state=42, max_iter=10)
+        gmm.fit(X)
+
+        assert gmm.weights_ is not None
+        assert gmm.means_.shape == (10, 2)
+        assert gmm.weights_.shape == (10,)

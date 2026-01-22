@@ -271,12 +271,14 @@ class GaussianMixture(MixtureModel):
         if self.init_method == "kmeans":
             try:
                 self.means_, _ = kmeans2(X, self.n_components, seed=self.random_state)
-            except Exception:
-                # Fallback to random if k-means fails
-                indices = rng.choice(n_samples, self.n_components, replace=False)
+            except (ValueError, RuntimeError):
+                # Fallback to random if k-means fails (e.g., too few samples)
+                replace = self.n_components > n_samples
+                indices = rng.choice(n_samples, self.n_components, replace=replace)
                 self.means_ = X[indices]
         else:
-            indices = rng.choice(n_samples, self.n_components, replace=False)
+            replace = self.n_components > n_samples
+            indices = rng.choice(n_samples, self.n_components, replace=replace)
             self.means_ = X[indices]
 
         # Initialize covariances as identity matrices
