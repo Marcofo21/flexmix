@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/finmix/mixture.py
+src/finmix/mixture_errors.py
+src/finmix.egg-info/PKG-INFO
+src/finmix.egg-info/SOURCES.txt
+src/finmix.egg-info/dependency_links.txt
+src/finmix.egg-info/requires.txt
+src/finmix.egg-info/top_level.txt
+src/finmix/fit_methods/em.py
+src/finmix/fit_methods/global_constrained.py
+src/finmix/fit_methods/ml.py
+tests/test_mixture.py

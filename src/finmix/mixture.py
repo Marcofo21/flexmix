@@ -7,6 +7,11 @@ import numpy as np
 from numpy.typing import NDArray
 import optimagic as om
 
+from finmix.mixture_errors import (
+    _fail_if_invalid_group_probs,
+    _fail_if_invalid_model_params,
+)
+
 
 class MixtureModel:
     """Finite mixture model with flexible component likelihoods.
@@ -58,12 +63,12 @@ class MixtureModel:
             self
 
         """
-        _fail_if_invalid_model_params(initial_model_params, self.n_components)
+        fail_if_invalid_model_params(initial_model_params, self.n_components)
 
         if initial_group_probs is None:
-            initial_group_probs = _initialize_uniform_weights(self.n_components)
+            initial_group_probs = initialize_uniform_weights(self.n_components)
         else:
-            _fail_if_invalid_group_probs(initial_group_probs, self.n_components)
+            fail_if_invalid_group_probs(initial_group_probs, self.n_components)
 
         if self.method == "em":
             params, weights = estimate_em(

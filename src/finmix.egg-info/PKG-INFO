@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: finmix
+Version: 0.1.0
+Summary: Flexible finite mixture modeling
+Requires-Python: >=3.10
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: optimagic
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"

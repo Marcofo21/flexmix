@@ -1,0 +1,8 @@
+numpy
+pandas
+optimagic
+
+[dev]
+pytest
+ruff
+pre-commit
