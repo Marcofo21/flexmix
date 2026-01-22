@@ -1,0 +1,24 @@
+[project]
+name = "flexmix"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[dependencies]
+python = ">=3.10"
+numpy = "*"
+pandas = "*"
+optimagic = "*"
+pytest = "*"
+ruff = "*"
+pre-commit = "*"
+
+[tasks]
+test = "pytest tests/"
+lint = "ruff check src/"
+format = "ruff format src/ tests/"
+
+[feature.dev.dependencies]
+ipython = "*"
+
+[pypi-dependencies]
+finmix = { path = ".", editable = true }
